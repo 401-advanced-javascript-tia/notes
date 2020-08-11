@@ -1,0 +1,26 @@
+{
+  "name": "notesy",
+  "version": "1.0.0",
+  "description": "lab 01",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "minimist": "^1.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiaLow/notes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TiaLow/notes/issues"
+  },
+  "homepage": "https://github.com/TiaLow/notes#readme"
+}
