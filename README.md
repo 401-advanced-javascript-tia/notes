@@ -6,8 +6,8 @@
   - User should be able to list all the notes in the database by All Notes and Notes in a category
   - User should be able to add a note to the database
   - User should be able to delete a single note
-- Phase 1: basic Input and Output from the command line, with flags and arguments 
-- Phase 2:
+- Phase 1 - Application Setup: basic Input and Output from the command line, with flags and arguments 
+- Phase 2 - Testing and Engineering: use Classes and Object Orientation, use TDD practices, integrate with an online CI framework
 - Phase 3:
 - Phase 4: 
 
