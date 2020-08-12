@@ -1,3 +1,7 @@
+// Jest docs: https://jestjs.io/docs/en/jest-object#jestspyonobject-methodname
+// jest.spyOn(object, methodName)
+// Creates a mock function similar to jest.fn but also tracks calls to object[methodName]
+
 
 jest.mock('minimist');
 const minimist = require('minimist');
@@ -10,27 +14,28 @@ minimist.mockImplementation(() => {
 });
 
 const Notes = require('../lib/notes.js');
-
+const Input = require('../lib/input.js');
 
 describe('Notes Module', () => {
   
   
   // test that asserts that if nothing is logged to the console, there is no command given
+  test('nothing is logged to console, no command given', () => {
 
-  // ***************************************************************
-  // ------------- TUES EVE STOPPING POINT *************************
-  // ********* COME BACK HERE, ET PHONE HOME************************
+    let input = new Input();
+    input.commandNote.payload = '';
+    let note = new Notes(input);
+    
+    const spyOnLog = jest.spyOn(note, 'execute');
 
-  test('addNote() should assert console.log of note', () => {
-
-    let note = new Notes();
-    expect(note.addNote()).toBeTruthy();
+    expect(note.payload === true);
+    expect(spyOnLog).toHaveBeenCalledTimes(0);
 
   });
 
 
   
-  // test that asserts that if the command (add) and the data (the note) were both valid, the console shoes the output 
+  // test that asserts that if the command (add) and the data (the note) were both valid, the console shows the output 
   //   - need to use a spy to check that a console.log was called 
   
 
