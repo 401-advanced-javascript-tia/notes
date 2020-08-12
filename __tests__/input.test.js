@@ -21,6 +21,7 @@ minimist.mockImplementation(() => {
 
 const Input = require('../lib/input.js');
 
+
 describe('Input Module', () => {
 
 
@@ -52,10 +53,6 @@ describe('Input Module', () => {
     input.commandNote = ''; 
     expect(input.validateNote()).toBeFalsy();
   });
-
-
-
-
 
 });
 

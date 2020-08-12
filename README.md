@@ -13,7 +13,7 @@
 
 ## Author: Tia Low
 
-## Version: 1.01.02
+## Version: 1.01.03
 
 ## Links, Resources, Collaborations
 - (link to the submission PR)
@@ -35,9 +35,9 @@ e.g. npm start
 **How to use your library (where applicable)**
 
 ### Tests
-How do you run tests?
-Any tests of note?
-Describe any tests that you did not complete, skipped, etc
+- npm install --dev jest
+- run npm test in terminal
+
 
 ### UML
 Link to an image of the UML for your application and response to events
