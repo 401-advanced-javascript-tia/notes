@@ -12,8 +12,15 @@
 const Input = require('./lib/input.js');
 const Notes = require('./lib/notes.js');
 
-const options = new Input();
+const input = new Input();
+const notes = new Notes(input);
 
-console.log('options:', options);
-// Notes.fetch(options); 
+console.log('input in index.js: ', input);
+console.log('notes in index.js: ', notes);
 
+input.validateNote() ? notes.execute() : error() ;
+
+
+function error () {
+  console.log('not sure how you got this far, but your note is still invalid. please try again');
+}

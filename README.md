@@ -13,7 +13,7 @@
 
 ## Author: Tia Low
 
-## Version: 1.01.01
+## Version: 1.01.02
 
 ## Links, Resources, Collaborations
 - (link to the submission PR)
