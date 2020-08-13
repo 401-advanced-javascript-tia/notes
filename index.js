@@ -10,6 +10,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost:27017/notes', {
   //27017 is the standard port
   useNewUrlParser: true, 
@@ -20,14 +21,16 @@ const Input = require('./lib/input.js');
 const Notes = require('./lib/notes.js');
 
 const input = new Input();
-const notes = new Notes(input);
+const notes = new Notes();
 
-console.log('input in index.js: ', input);
-console.log('notes in index.js: ', notes);
-
-input.validateNote() ? notes.execute() : error() ;
-
+if (input.validateNote()) {
+  notes.execute(input.command)
+    .then(mongoose.disconnect)
+    .catch(error => console.error(error));
+} else {
+  error();
+}
 
 function error () {
-  console.log('not sure how you got this far, but your note is still invalid. please try again');
+  console.log('Please type a valid action and note. Consider the following:', '\n', '--add \'notes are neat\'', '\n', '--list', '\n', '-d', '\'this note\'');
 }
