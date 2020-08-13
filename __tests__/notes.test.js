@@ -36,42 +36,26 @@ describe('Notes Module', () => {
 
   
   // test that asserts that if the command (add) and the data (the note) were both valid, the console shows the output 
-  //   - need to use a spy to check that a console.log was called 
+
+  it('if add command and following data is valid, addNote() logs note', () => {
+
+    let input = new Input();
+    input.commandNote = {action: 'add', payload: 'this is the test note'};
+    let note = new Notes(input);
+
+    console.log('note in test:', note);
+
+    const spyOnaddNote = jest.spyOn(note, 'addNote');
   
+    note.addNote();
+    // let test = note.addNote('test');
+    // console.log('test in notes test:', test);
+
+    expect(spyOnaddNote).toBeCalled();
+
+  });
 
 
 
 });
 
-
-
-
-
-// // test to see if good input causes the validateNote() method to return true
-// test('validNote() should give good object', () => {
-
-//   let input = new Input();
-//   expect(input.validateNote()).toBeTruthy();
-
-// });
-
-
-// // test to see if good input creates new Input instance with action and payload props
-// test('parse() should give us a good object', () => {
-
-//   let input = new Input();
-//   let command = input.parseNote({a: 'test'});
-
-//   expect(command.action).toBe('add');
-//   expect(command.payload).toBe('test');
-
-// });
-
-
-// // test to see if given bad input, validateNote returns false
-// it('validateNote() with bad input returns false', () => {
-
-//   let input = new Input();
-//   input.commandNote = ''; 
-//   expect(input.validateNote()).toBeFalsy();
-// });

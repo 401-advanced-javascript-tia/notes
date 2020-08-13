@@ -8,9 +8,13 @@
   },
   "dependencies": {
     "jest": "^26.3.0",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "mongoose": "^5.8.11",
+    "superagent": "^5.2.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@code-fellows/supergoose": "^1.0.1"
+  },
   "scripts": {
     "start": "node index.js",
     "lint": "eslint **/*.js",
