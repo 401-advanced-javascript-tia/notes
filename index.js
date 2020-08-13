@@ -9,6 +9,13 @@
 
 'use strict';
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/notes', {
+  //27017 is the standard port
+  useNewUrlParser: true, 
+  useUnifiedTopology: true,
+});
+
 const Input = require('./lib/input.js');
 const Notes = require('./lib/notes.js');
 

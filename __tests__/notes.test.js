@@ -43,13 +43,9 @@ describe('Notes Module', () => {
     input.commandNote = {action: 'add', payload: 'this is the test note'};
     let note = new Notes(input);
 
-    console.log('note in test:', note);
-
     const spyOnaddNote = jest.spyOn(note, 'addNote');
   
     note.addNote();
-    // let test = note.addNote('test');
-    // console.log('test in notes test:', test);
 
     expect(spyOnaddNote).toBeCalled();
 

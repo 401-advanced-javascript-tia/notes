@@ -8,12 +8,12 @@
   - User should be able to delete a single note
 - Phase 1 - Application Setup: basic Input and Output from the command line, with flags and arguments 
 - Phase 2 - Testing and Engineering: use Classes and Object Orientation, use TDD practices, integrate with an online CI framework
-- Phase 3:
+- Phase 3: - Data Modeling & NoSQL DBs - save notes to a MongoDB to retrieve later, categorize notes to more easily find them, be able to see a list of notes to manage them, be able to delete a note
 - Phase 4: 
 
 ## Author: Tia Low
 
-## Version: 1.01.03
+## Version: 1.01.4
 
 ## Links, Resources, Collaborations
 - (link to the submission PR)
