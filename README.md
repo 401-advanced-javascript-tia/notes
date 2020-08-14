@@ -1,7 +1,7 @@
 # LAB - Class 01
 
 ## Project: Notesy
-- This *will be* a terminal based (CLI) application allowing users to easily create and manage a list of categorized notes
+- This is a terminal based (CLI) application allowing users to easily create and manage a list of categorized notes
 - **End goal business requirements:**
   - User should be able to list all the notes in the database by All Notes and Notes in a category
   - User should be able to add a note to the database
@@ -13,24 +13,22 @@
 
 ## Author: Tia Low
 
-## Version: 1.01.4
+## Version: 1.01.5
 
 ## Links, Resources, Collaborations
 - (link to the submission PR)
 - ci/cd (GitHub Actions)
-- ( link to back-end server url (when applicable))
-- ( link to front-end application (when applicable))
 - worked with several classmates including Alex, Beasley, Amber, Jen, Matt, Blake
+- special shoutout to Beasley for help with understanding the Lab 3 list and delete functions
 
 ## Setup
-.env requirements (where applicable)
-i.e.
 
-PORT - Port Number
-MONGODB_URI - URL to the running mongo instance/db
+MONGOOSE_URI = mongodb://localhost:27017/notes
 
 **How to initialize/run your application (where applicable)**
-e.g. npm start
+npm install
+node . index.js
+- add note by using node . --add 'this is the note'
 
 **How to use your library (where applicable)**
 

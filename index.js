@@ -11,7 +11,9 @@
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/notes', {
+const MONGOOSE_URI = 'mongodb://localhost:27017/notes';
+
+mongoose.connect(MONGOOSE_URI, {
   //27017 is the standard port
   useNewUrlParser: true, 
   useUnifiedTopology: true,
@@ -23,9 +25,12 @@ const Notes = require('./lib/notes.js');
 const input = new Input();
 const notes = new Notes();
 
+console.log('input in index: ', input);
+
 if (input.validateNote()) {
   notes.execute(input.command)
     .then(mongoose.disconnect)
+    // if we don't have mongoose.disconnect it will stick around and hog the process until you disconnect
     .catch(error => console.error(error));
 } else {
   error();

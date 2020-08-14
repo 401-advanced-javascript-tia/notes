@@ -3,66 +3,17 @@
 // Creates a mock function similar to jest.fn but also tracks calls to object[methodName]
 
 'use strict';
-
-// jest.mock('minimist');
-// const minimist = require('minimist');
-
-
-// minimist.mockImplementation(() => {
-//   return {
-//     a: 'This is a note',
-//   };
-// });
-
-// describe('Notes Module', () => {
-
-
-//   // test that asserts that if nothing is logged to the console, there is no command given
-//   test('nothing is logged to console, no command given', () => {
-
-//     let input = new Input();
-//     input.command.payload = '';
-//     let note = new Notes(input);
-
-//     const spyOnLog = jest.spyOn(note, 'execute');
-
-//     expect(note.payload === true);
-//     expect(spyOnLog).toHaveBeenCalledTimes(0);
-
-//   });
-
-//   // test that asserts that if the command (add) and the data (the note) were both valid, the console shows the output 
-
-//   it('if add command and following data is valid, addNote() logs note', () => {
-
-//     let input = new Input();
-//     input.command = {action: 'add', payload: 'this is the test note'};
-//     let note = new Notes(input);
-
-//     const spyOnaddNote = jest.spyOn(note, 'addNote');
-
-//     note.addNote();
-
-//     expect(spyOnaddNote).toBeCalled();
-
-//   });
-
-
-
-// });
-          
           
 require('@code-fellows/supergoose');
 
 
 const Notes = require('../lib/notes.js');
-const Input = require('../lib/input.js');
 
 const notes = new Notes();
+jest.spyOn(notes, 'addNote');
 
 // beforeEach(notes.clear);
 
-jest.spyOn(notes, 'addNote');
 
 describe('Note Module', () => {
 
@@ -73,7 +24,7 @@ describe('Note Module', () => {
       });
   });
 
-  it('notes() can add a note', () => {
+  it('addNote() can add a note', () => {
     const action = 'add';
     const payload = 'test note';
     return notes.execute({ action, payload })
@@ -82,14 +33,40 @@ describe('Note Module', () => {
       });
   });
 
-  it('notes() can return a saved note', () => {
+  it('addNote() can return a saved note', () => {
     const action = 'add';
     const payload = 'test note';
     return notes.execute({ action, payload })
       .then(savedNote => {
         expect(savedNote.category).toBe('general');
+        // 'general' because this is the default category declared in the schema
         expect(savedNote.text).toBe('test note');
       });
   });
+
+});
+
+describe('List Note', () => {
+
+  it('when user commands --list, relevant records are returned ', () => {
+    return false;
+  });
+
+
+});
+
+describe('Delete Note', () => {
+
+  it('when a note is deleted, it is no longer in list', () => {
+    return false;
+    
+  });
+
+  
+  it('when the schema is searched, the record is not in the database', () => {
+    return false;
+    
+  });
+
 
 });
