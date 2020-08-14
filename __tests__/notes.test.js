@@ -59,6 +59,9 @@ const Notes = require('../lib/notes.js');
 const Input = require('../lib/input.js');
 
 const notes = new Notes();
+
+// beforeEach(notes.clear);
+
 jest.spyOn(notes, 'addNote');
 
 describe('Note Module', () => {
