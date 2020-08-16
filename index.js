@@ -25,7 +25,7 @@ const Notes = require('./lib/notes.js');
 const input = new Input();
 const notes = new Notes();
 
-console.log('input in index: ', input);
+// console.log('input in index: ', input);
 
 if (input.validateNote()) {
   notes.execute(input.command)

@@ -11,9 +11,11 @@ const Notes = require('../lib/notes.js');
 
 const notes = new Notes();
 jest.spyOn(notes, 'addNote');
+jest.spyOn(notes, 'listNote');
+jest.spyOn(notes, 'deleteNote');
 
-// beforeEach(notes.clear);
 
+beforeEach(notes.clear);
 
 describe('Note Module', () => {
 
@@ -48,23 +50,30 @@ describe('Note Module', () => {
 
 describe('List Note', () => {
 
-  it('when user commands --list, relevant records are returned ', () => {
-    return false;
-  });
+  it('when user commands --list, relevant records are returned ', async () => {
+    
+    const firstNote = {action: 'add', payload:'first note in \'test\' category', category: 'test'};
+    const secondNote = {action: 'add', payload:'second note in \'test\' category', category: 'test'};
 
+    await notes.execute(firstNote);
+    await notes.execute(secondNote);
+    const allNotes = await notes.listNote('test');
+    expect(allNotes.length).toBe(2);
+
+  });
 
 });
 
 describe('Delete Note', () => {
 
   it('when a note is deleted, it is no longer in list', () => {
-    return false;
+   
     
   });
 
   
   it('when the schema is searched, the record is not in the database', () => {
-    return false;
+    
     
   });
 
