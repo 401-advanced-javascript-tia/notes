@@ -14,11 +14,9 @@ const minimist = require('minimist');
 
 
 minimist.mockImplementation(() => {
-
   return {
     a: 'This is a note',
   };
-
 });
 
 const Input = require('../lib/input.js');

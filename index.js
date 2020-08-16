@@ -11,10 +11,11 @@
 
 const mongoose = require('mongoose');
 
-const MONGOOSE_URI = 'mongodb://localhost:27017/notes';
+// const MONGOOSE_URI = 'mongodb://localhost:27017/notes';
+// the above was moved to .env file
 
-mongoose.connect(MONGOOSE_URI, {
-  //27017 is the standard port
+mongoose.connect(process.env.MONGOOSE_URI, {
+  //27017 is the standard port, info moved to .env
   useNewUrlParser: true, 
   useUnifiedTopology: true,
 });
