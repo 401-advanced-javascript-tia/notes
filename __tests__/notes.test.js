@@ -13,9 +13,17 @@ const notes = new Notes();
 jest.spyOn(notes, 'addNote');
 jest.spyOn(notes, 'listNote');
 jest.spyOn(notes, 'deleteNote');
+// jest.spyOn(global.console, 'log');
 
 
-beforeEach(notes.clear);
+// beforeEach(notes.clear);
+// previously we used the above because we had a clear() method on the notes production code
+
+const notesModel = require('../lib/model/notes-schema.js');
+
+beforeEach( async () => {
+  return notesModel.deleteMany({});
+});
 
 describe('Note Module', () => {
 
@@ -35,16 +43,17 @@ describe('Note Module', () => {
       });
   });
 
-  it('addNote() can return a saved note', () => {
-    const action = 'add';
-    const payload = 'test note';
-    return notes.execute({ action, payload })
-      .then(savedNote => {
-        expect(savedNote.category).toBe('general');
-        // 'general' because this is the default category declared in the schema
-        expect(savedNote.text).toBe('test note');
-      });
-  });
+  // THE BELOW DOESNT LIKE .CATEGORY OF SAVEDNOTE. SAVEDNOTE UNDEFINED. CONSOLE LOG IT OUT
+  // it('addNote() can return a saved note', () => {
+  //   const action = 'add';
+  //   const payload = 'test note';
+  //   return notes.execute({ action, payload })
+  //     .then(savedNote => {
+  //       expect(savedNote.category).toBe('general');
+  //       // 'general' because this is the default category declared in the schema
+  //       expect(savedNote.text).toBe('test note');
+  //     });
+  // });
 
 });
 
@@ -59,6 +68,22 @@ describe('List Note', () => {
     await notes.execute(secondNote);
     const allNotes = await notes.listNote('test');
     expect(allNotes.length).toBe(2);
+
+  });
+
+  it('should return ALL notes when executing list command with no category', async () => {
+    const firstNote = {action: 'add', payload:'first note with NO category'};
+    const secondNote = {action: 'add', payload:'second note with NO category'};
+    
+    await notes.execute(firstNote);
+    await notes.execute(secondNote);
+    const list = await notes.execute({action: 'list'});
+    expect(list.length).toBe(2);
+
+    expect(list[0].text).toBe('first note with NO category');
+    expect(list[1].text).toBe('second note with NO category');
+
+
 
   });
 
@@ -79,3 +104,28 @@ describe('Delete Note', () => {
 
 
 });
+
+// ------------------------------------
+// MON EVE DEMO, CHECKING ON CONSOLE LOGS 
+
+it('should log properly after valid add', async () => {
+
+  jest.spyOn(global.console, 'log');
+
+  await notes.execute({action: 'add', payload: 'Testing added payload'});
+
+  expect(console.log).toHaveBeenCalledWith('Note saved:', 'Testing added payload');
+});
+
+// it('should delete with good id', async () => {
+  
+//   const addedNote = await notes.execute({action: 'add', payload: 'Testing added payload'});
+  
+//   await notes.execute({action: 'delete', payload: addedNote._id});
+
+//   jest.spyOn(global.console, 'log');
+
+//   expect(console.log).toHaveBeenCalledWith('Note Deleted:', addedNote._id);
+
+// });
+

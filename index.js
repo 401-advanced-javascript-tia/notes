@@ -10,12 +10,14 @@
 'use strict';
 
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // const MONGOOSE_URI = 'mongodb://localhost:27017/notes';
 // the above was moved to .env file
 
 mongoose.connect(process.env.MONGOOSE_URI, {
   //27017 is the standard port, info moved to .env
+  // .env stands for environment, could do one .env for just environment stuff and then could do another for actual secrets like authentication keys and such
   useNewUrlParser: true, 
   useUnifiedTopology: true,
 });

@@ -45,6 +45,16 @@ describe('Parse add', () => {
     expect(command.payload).not.toBeDefined();
   });
 
+  it('should do this thing with an empty object', () => {
+    let options = new Input();
+    options.command = {};
+    expect(options.validateNote()).toBeFalsy();
+
+
+  });
+
+
+
 });
 
 describe('Parse list', () => {
@@ -61,10 +71,11 @@ describe('Parse list', () => {
     expect(command.action).toBe('list');
   });
 
+  
 });
 
 describe('parse category', () => {
-
+  
   it('should parse -a with payload and --category', () => {
     const input = new Input();
     const command = input.parseNote({ a: 'good payload', category: 'good category' });
@@ -72,7 +83,7 @@ describe('parse category', () => {
     expect(command.payload).toBe('good payload');
     expect(command.category).toBe('good category');
   });
-
+  
   it('should parse -a with payload and -c with category', () => {
     const input = new Input();
     const command = input.parseNote({ a: 'good payload', c: 'good category' });
@@ -80,64 +91,71 @@ describe('parse category', () => {
     expect(command.payload).toBe('good payload');
     expect(command.category).toBe('good category');
   });
-
+  
   it('should parse --list and --category', () => {
     const input = new Input();
     const command = input.parseNote({ list: true, category: 'good category' });
     expect(command.action).toBe('list');
     expect(command.category).toBe('good category');
   });
-
+  
   it('should parse --add with bad payload', () => {
     const input = new Input();
     const command = input.parseNote({ list: true, payload: true });
     expect(command.action).toBe('list');
     expect(command.payload).not.toBeDefined();
   });
-
+  
 });
 
 describe('Parse delete', () => {
-
+  
   it('should parse --delete', () => {
     const input = new Input();
     const command = input.parseNote({ delete: 'someid' });
     expect(command.action).toBe('delete');
     expect(command.payload).toBe('someid');
   });
-
+  
   it('should parse -d', () => {
     const input = new Input();
     const command = input.parseNote({ d: 'someid' });
     expect(command.action).toBe('delete');
     expect(command.payload).toBe('someid');
   });
-
+  
 });
 
 describe('Validate', () => {
-
+  
   it('valid() respects a proper object', () => {
     let options = new Input();
     expect(options.validateNote()).toBe(true);
   });
-
+  
   it('valid() rejects an invalid object', () => {
     let options = new Input();
     options.command = {}; // break it
     expect(options.validateNote()).toBe(false);
   });
-
+  
   it('valid() rejects an invalid object', () => {
     let options = new Input();
     options.command = { action: 'add', payload: undefined }; // break it
     expect(options.validateNote()).toBe(false);
   });
-
+  
+  it('validateNote() handled list', () => {
+    let options = new Input();
+    options.command = {action: 'list', payload: undefined, category: undefined};
+  
+    expect(options.validateNote() === true);
+  });
+  
 });
 
 describe('category', () => {
-
+  
   it('should parse category with full switch', () => {
     let options = new Input();
     const actual = options.parseNote({ add: 'buy milk', category: 'groceries' });

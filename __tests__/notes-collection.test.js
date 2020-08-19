@@ -13,6 +13,12 @@ function compareProperties(one, other) {
   }
 }
 
+const notesModel = require('../lib/model/notes-schema.js');
+
+beforeEach( async () => {
+  return notesModel.deleteMany({});
+});
+
 
 describe('Notes Collection create() method', () => {
 
@@ -34,27 +40,51 @@ describe('Notes Collection create() method', () => {
 
   });
 
+  it('should create with no category givem', async () => {
+    const notesCollection = new localNotesCollection();
+    const noteData = {text: 'general note'};
+    const note = await notesCollection.create(noteData);
+    expect(note._id).toBeDefined();
+    compareProperties(noteData, note);
+    expect(note.category).toBe('general');
+
+
+  });
+
 });
 
 describe('Notes Collection delete() method', async () => {
 
-  const noteCollection = new localNotesCollection();
-  const noteData = {text: 'First note in test category', category: 'test'};
-  const note = await noteCollection.create(noteData);
+  it('should delete a note', async () => {
 
-  console.log('note in notes-collection.test.js:', note);
 
-  expect(note._id).toBeDefined();
 
-  const deleteNote = await noteCollection.delete(note._id);
-  console.log(' DELETE NOTE IN NOTE COLLECTION TEST:', deleteNote);
-  //ARGH! how do we test the delete methods??
-  
-  
-
+    
+    const noteCollection = new localNotesCollection();
+    const noteData = {text: 'First note to test delete'};
+    const note = await noteCollection.create(noteData);
+    
+    // console.log('note in notes-collection.test.js:', note);
+    
+    // expect(note._id).toBeDefined();
+    
+    // const deleteNote = await noteCollection.delete(note._id);
+    // console.log(' DELETE NOTE IN NOTE COLLECTION TEST:', deleteNote);
+    //ARGH! how do we test the delete methods??
+    
+    await noteCollection.delete(note._id);
+    const noteToDelete = await noteCollection.get({'_id':note._id});
+    
+    expect(noteToDelete).not.toBeUndefined();
+    
+  });
+    
+    
+    
+    
 });
-
-
+  
+  
 describe('Notes Collection get() method', () => {
 
 
